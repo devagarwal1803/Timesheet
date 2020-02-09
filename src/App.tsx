@@ -47,6 +47,15 @@ const App: React.FC = () => {
         console.log(totalMinute);
         return Math.min(100, ((totalMinute * 100) / 480));
     }
+    //Get Colour for progress Bar
+    function getColour() {
+        const val = progressBar();
+        if (val < 50)
+            return "red";
+        if (val < 80)
+            return "orange";
+        return "green";
+    }
 
     const onRemoveEntry = (entry: IEntry) => {
         const existingTasksString = window.localStorage.getItem(storageKey);
@@ -71,7 +80,7 @@ const App: React.FC = () => {
         <div className="app-container">
             <h1>Timesheet</h1>
             <section className="progress-bar-section">
-                <div className="progress-bar-div" style={{ width: `{ProgressBar()}%`, background: "rgb(237, 105, 76)" }}>
+                <div className="progress-bar-div" style={{ width: `${progressBar()}%`, background: `${getColour()}` }}>
                 </div>
             </section>
             {entries.length > 0 ? (
