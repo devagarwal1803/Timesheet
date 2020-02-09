@@ -9,17 +9,22 @@ import logo from './../../assets/cross-icon.svg'
 
 interface ITaskListProps {
     entries: IEntry[];
+    onRemove: (entry: IEntry) => void;
 }
 interface ITaskCardProps {
     entry: IEntry;
+    onRemove: (entry: IEntry) => void;
 }
 
 export const TaskList: React.FC<ITaskListProps> = (props: ITaskListProps) => {
     const { entries } = props;
+    const onRemoveEntry = (entry: IEntry) => {
+        props.onRemove(entry);
+    }
     return (
         <div className="task-list">
             {entries.map((entry: IEntry) => (
-                <TaskCard entry={entry} key={entry.id} />
+                <TaskCard entry={entry} key={entry.id} onRemove={onRemoveEntry} />
             ))}
         </div>
     );
@@ -29,9 +34,13 @@ const TaskCard: React.FC<ITaskCardProps> = (props: ITaskCardProps) => {
     const {
         entry: { task, hours, minutes, remark, id },
     } = props;
+    const onRemove = () => {
+        const entry: IEntry = { task, hours, minutes, remark, id };
+        props.onRemove(entry);
+    }
     return (
         <div key={id} className="task-card">
-            <button className="button">
+            <button className="button" onClick={onRemove}>
                 <img className="image" src={logo} alt="X" />
             </button>
             <div className="row1">
