@@ -18,7 +18,7 @@ export const TaskList: React.FC<ITaskListProps> = (props: ITaskListProps) => {
     return (
         <div className="task-list">
             {entries.map((entry: IEntry) => (
-                <TaskCard entry={entry} />
+                <TaskCard entry={entry} key={entry.id} />
             ))}
         </div>
     );
@@ -26,10 +26,10 @@ export const TaskList: React.FC<ITaskListProps> = (props: ITaskListProps) => {
 
 const TaskCard: React.FC<ITaskCardProps> = (props: ITaskCardProps) => {
     const {
-        entry: { task, hours, minutes, remark },
+        entry: { task, hours, minutes, remark, id },
     } = props;
     return (
-        <div className="task-card">
+        <div key={id} className="task-card">
             <div className="row1">
                 <div className="task-title">{task}</div>
                 <div className="task-time">{`${hours}h ${minutes}m`}</div>

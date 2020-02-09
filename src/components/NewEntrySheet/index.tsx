@@ -18,6 +18,7 @@ export interface IEntry {
     hours: string;
     minutes: string;
     remark: string;
+    id: string;
 }
 
 export const NewEntrySheet: React.FC<INewEntrySheet> = (props: INewEntrySheet) => {
@@ -26,6 +27,7 @@ export const NewEntrySheet: React.FC<INewEntrySheet> = (props: INewEntrySheet) =
     const [minutes, setMinutes] = React.useState('');
     const [remark, setRemark] = React.useState('');
     const [isDisabled, setIsDisabled] = React.useState(true);
+    const [id, setId] = React.useState(Date().toString());
 
     const onTaskChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setTask(event.target.value);
@@ -44,7 +46,8 @@ export const NewEntrySheet: React.FC<INewEntrySheet> = (props: INewEntrySheet) =
     };
 
     const onAddEntry = () => {
-        const entry: IEntry = { task, hours, minutes, remark };
+        setId(Date().toString());
+        const entry: IEntry = { task, hours, minutes, remark, id };
         props.onAdd(entry);
     };
 
@@ -70,7 +73,7 @@ export const NewEntrySheet: React.FC<INewEntrySheet> = (props: INewEntrySheet) =
                         Task Type
                         <select className="task-select" onChange={onTaskChange} value={task}>
                             {taskTypes.map((task: string) => (
-                                <option value={task}>{task}</option>
+                                <option key={task} value={task}> {task}</option>
                             ))}
                         </select>
                     </label>
@@ -122,6 +125,6 @@ export const NewEntrySheet: React.FC<INewEntrySheet> = (props: INewEntrySheet) =
                     </Button>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
