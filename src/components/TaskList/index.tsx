@@ -26,12 +26,13 @@ export const TaskList: React.FC<ITaskListProps> = (props: ITaskListProps) => {
 
 const TaskCard: React.FC<ITaskCardProps> = (props: ITaskCardProps) => {
     const {
-        entry: { task, hours, minutes },
+        entry: { task, hours, minutes, remark },
     } = props;
     return (
         <div className="task-card">
             <div className="task-title">{task}</div>
             <div className="task-time">{`${hours}h ${minutes}m`}</div>
+            <div className="task-time">{`${remark}`}</div>
         </div>
     );
 };
