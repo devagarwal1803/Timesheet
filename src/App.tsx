@@ -33,6 +33,21 @@ const App: React.FC = () => {
         closeEntrySheet();
     };
 
+    //Adding ProgressBar
+    function progressBar() {
+        const existingTasksString = window.localStorage.getItem(storageKey);
+        let totalMinute: number = 0;
+        let i: number;
+        if (existingTasksString) {
+            const allTasks = JSON.parse(existingTasksString);
+            for (i = 0; i < allTasks.length; i++) {
+                totalMinute += parseInt(allTasks[i].hours) * 60 + parseInt(allTasks[i].minutes);
+            }
+        }
+        console.log(totalMinute);
+        return Math.min(100, ((totalMinute * 100) / 480));
+    }
+
     const onRemoveEntry = (entry: IEntry) => {
         const existingTasksString = window.localStorage.getItem(storageKey);
         if (existingTasksString) {
@@ -55,16 +70,21 @@ const App: React.FC = () => {
     return (
         <div className="app-container">
             <h1>Timesheet</h1>
+            <section className="progress-bar-section">
+                <div className="progress-bar-div" style={{ width: `{ProgressBar()}%`, background: "rgb(237, 105, 76)" }}>
+                </div>
+            </section>
             {entries.length > 0 ? (
                 <TaskList entries={entries} onRemove={onRemoveEntry} />
             ) : (
                     <p className="empty-text">No entries yet. Add a new entry by clicking the + button.</p>
-                )}
+                )
+            }
             <button className="floating-add-entry-btn" onClick={openEntrySheet}>
                 <img className="add-icon" src={addIcon} alt="add entry" />
             </button>
             {isEntrySheetOpen && <NewEntrySheet onClose={closeEntrySheet} onAdd={onAddEntry} />}
-        </div>
+        </div >
     );
 };
 
