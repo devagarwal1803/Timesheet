@@ -25,6 +25,7 @@ export const NewEntrySheet: React.FC<INewEntrySheet> = (props: INewEntrySheet) =
     const [hours, setHours] = React.useState('');
     const [minutes, setMinutes] = React.useState('');
     const [remark, setRemark] = React.useState('');
+    const [isDisabled, setIsDisabled] = React.useState(true);
 
     const onTaskChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setTask(event.target.value);
@@ -46,6 +47,12 @@ export const NewEntrySheet: React.FC<INewEntrySheet> = (props: INewEntrySheet) =
         const entry: IEntry = { task, hours, minutes, remark };
         props.onAdd(entry);
     };
+
+    const onEntryChange = () => {
+        if (hours.length > 0 && minutes.length > 0 && remark.length > 0)
+            return setIsDisabled(false);
+        return setIsDisabled(true);
+    }
 
     return (
         <div className="new-entry-sheet">
@@ -76,6 +83,7 @@ export const NewEntrySheet: React.FC<INewEntrySheet> = (props: INewEntrySheet) =
                                     placeholder="hours"
                                     className="hour-input"
                                     onChange={onHoursChange}
+                                    onKeyUp={onEntryChange}
                                     value={hours}
                                 />
                                 <span className="time-indicator">h</span>
@@ -86,6 +94,7 @@ export const NewEntrySheet: React.FC<INewEntrySheet> = (props: INewEntrySheet) =
                                     placeholder="minutes"
                                     className="minute-input"
                                     onChange={onMinutesChange}
+                                    onKeyUp={onEntryChange}
                                     value={minutes}
                                 />
                                 <span className="time-indicator">m</span>
@@ -96,13 +105,19 @@ export const NewEntrySheet: React.FC<INewEntrySheet> = (props: INewEntrySheet) =
                 <div className="row">
                     <label className="remarks">
                         Remarks
-                        <input type="text" placeholder="Remarks" className="remarks-input" onChange={onRemarkChange} />
+                        <input
+                            type="text"
+                            placeholder="Remarks"
+                            className="remarks-input"
+                            onChange={onRemarkChange}
+                            onKeyUp={onEntryChange}
+                        />
                     </label>
                 </div>
             </div>
             <div className="sheet-footer">
                 <div className="action-group">
-                    <Button color="primary" onClick={onAddEntry}>
+                    <Button color="primary" onClick={onAddEntry} status={isDisabled}>
                         Add Entry
                     </Button>
                 </div>
