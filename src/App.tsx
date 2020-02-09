@@ -11,6 +11,7 @@ import { storageKey } from './constants/constants';
 
 const App: React.FC = () => {
     const [isEntrySheetOpen, setIsEntrySheetOpen] = React.useState(false);
+    const [data, setData] = React.useState();
 
     const openEntrySheet = () => {
         setIsEntrySheetOpen(true);
@@ -38,6 +39,7 @@ const App: React.FC = () => {
             const existingTasks = JSON.parse(existingTasksString);
             const myTask = existingTasks.filter((item: IEntry) => item.id !== entry.id);
             window.localStorage.setItem(storageKey, JSON.stringify(myTask));
+            setData(myTask);
         }
         getTaskEntries();
     };
