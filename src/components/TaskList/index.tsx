@@ -5,6 +5,7 @@
 import * as React from 'react';
 import './styles.scss';
 import { IEntry } from '../NewEntrySheet';
+import logo from './../../assets/cross-icon.svg'
 
 interface ITaskListProps {
     entries: IEntry[];
@@ -30,6 +31,9 @@ const TaskCard: React.FC<ITaskCardProps> = (props: ITaskCardProps) => {
     } = props;
     return (
         <div key={id} className="task-card">
+            <button className="button">
+                <img className="image" src={logo} alt="X" />
+            </button>
             <div className="row1">
                 <div className="task-title">{task}</div>
                 <div className="task-time">{`${hours}h ${minutes}m`}</div>

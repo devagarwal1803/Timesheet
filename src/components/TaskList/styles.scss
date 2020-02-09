@@ -45,3 +45,18 @@
   }
 
 }
+.button{
+  display: flex;
+  border: unset;
+  position: absolute;
+  height: 1.9em;
+  width: 1.9em;
+  border-radius: 50%;
+  right: -4%;
+  top: -10%;
+  justify-content: center;
+
+  .image{
+    height: 1.2em;
+  }
+}
