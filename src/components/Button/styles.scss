@@ -1,6 +1,6 @@
 @import "../../styles/commons.scss";
 
-.btn {
+.btn{
   background: $grey-40;
   color: $grey-10;
   padding: 1em 1.5em;
@@ -12,8 +12,12 @@
 }
 
 .btn--primary {
+  
   background: $primary-blue;
   color: $white;
+}
+.btn--primary:disabled {
+  background:rgba(18,134,241,.5);
 }
 
 .btn--secondary {
