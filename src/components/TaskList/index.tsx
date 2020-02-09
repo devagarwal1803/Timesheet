@@ -9,18 +9,22 @@ import logo from './../../assets/cross-icon.svg'
 
 interface ITaskListProps {
     entries: IEntry[];
+    //Added
     onRemove: (entry: IEntry) => void;
 }
 interface ITaskCardProps {
     entry: IEntry;
+    //Added
     onRemove: (entry: IEntry) => void;
 }
 
 export const TaskList: React.FC<ITaskListProps> = (props: ITaskListProps) => {
     const { entries } = props;
+    //Adding Remove functionality
     const onRemoveEntry = (entry: IEntry) => {
         props.onRemove(entry);
     }
+    //Removign a Task
     return (
         <div className="task-list">
             {entries.map((entry: IEntry) => (
@@ -47,6 +51,7 @@ const TaskCard: React.FC<ITaskCardProps> = (props: ITaskCardProps) => {
                 <div className="task-title">{task}</div>
                 <div className="task-time">{`${hours}h ${minutes}m`}</div>
             </div>
+            {/* Add remark feature added */}
             <div className="row2">
                 <p className="remark">{`${remark}`}</p>
             </div>

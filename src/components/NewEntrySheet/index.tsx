@@ -40,7 +40,7 @@ export const NewEntrySheet: React.FC<INewEntrySheet> = (props: INewEntrySheet) =
     const onMinutesChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setMinutes(event.target.value);
     };
-
+    //Changing state of remark
     const onRemarkChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setRemark(event.target.value);
     };
@@ -105,6 +105,7 @@ export const NewEntrySheet: React.FC<INewEntrySheet> = (props: INewEntrySheet) =
                         </div>
                     </label>
                 </div>
+                {/* Add remark here */}
                 <div className="row">
                     <label className="remarks">
                         Remarks
@@ -120,6 +121,7 @@ export const NewEntrySheet: React.FC<INewEntrySheet> = (props: INewEntrySheet) =
             </div>
             <div className="sheet-footer">
                 <div className="action-group">
+                    {/* Status as prop added to change check it for disable*/}
                     <Button color="primary" onClick={onAddEntry} status={isDisabled}>
                         Add Entry
                     </Button>

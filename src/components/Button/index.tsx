@@ -10,6 +10,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
     const { color, customClassName, status, ...btnProps } = props;
+    // Disable button feature here
     return (
         <button disabled={status} className={`btn btn--${color} ${customClassName || ''}`} {...btnProps} >
             {props.children}

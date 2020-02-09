@@ -11,8 +11,8 @@ import { storageKey } from './constants/constants';
 
 const App: React.FC = () => {
     const [isEntrySheetOpen, setIsEntrySheetOpen] = React.useState(false);
+    // eslint-disable-next-line
     const [data, setData] = React.useState();
-
     const openEntrySheet = () => {
         setIsEntrySheetOpen(true);
     };
@@ -44,17 +44,19 @@ const App: React.FC = () => {
                 totalMinute += parseInt(allTasks[i].hours) * 60 + parseInt(allTasks[i].minutes);
             }
         }
-        console.log(totalMinute);
+        // console.log(totalMinute);
         return Math.min(100, ((totalMinute * 100) / 480));
     }
     //Get Colour for progress Bar
     function getColour() {
         const val = progressBar();
+        // console.log(val);
         if (val < 50)
             return "red";
-        if (val < 80)
+        else if (val < 100)
             return "orange";
-        return "green";
+        else
+            return "green";
     }
 
     const onRemoveEntry = (entry: IEntry) => {
@@ -92,6 +94,7 @@ const App: React.FC = () => {
             <button className="floating-add-entry-btn" onClick={openEntrySheet}>
                 <img className="add-icon" src={addIcon} alt="add entry" />
             </button>
+            {/* On Close event added */}
             {isEntrySheetOpen && <NewEntrySheet onClose={closeEntrySheet} onAdd={onAddEntry} />}
         </div >
     );

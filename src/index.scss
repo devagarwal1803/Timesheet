@@ -11,10 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
 .progress-bar-section{
   height: .5em;
   border-radius: 4px;
   background: #a0a4a8;
+  
   .progress-bar-div{
     height: 100%;
     border-radius: 4px;
