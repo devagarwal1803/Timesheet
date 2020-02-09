@@ -87,6 +87,12 @@ export const NewEntrySheet: React.FC<INewEntrySheet> = (props: INewEntrySheet) =
                         </div>
                     </label>
                 </div>
+                <div className="row">
+                    <label className="remarks">
+                        Remarks
+                        <input type="text" placeholder="Remarks" className="remarks-input" />
+                    </label>
+                </div>
             </div>
             <div className="sheet-footer">
                 <div className="action-group">
